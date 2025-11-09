@@ -1,26 +1,50 @@
-﻿![alt text](./assets/images/readme\_head.png)
+﻿# Morse Code Translator
 
-# Morse Code Translator
+A Morse code translator built during week 5 of my software development course at \_nology.
 
-A Morse code translator built during week 5 of my software development course at \_nology and tested using Jest. 
+The app converts English ↔ Morse code, supporting full words, numbers, and complete sentences.
 
-It is capable of translating English words to Morse code and vice versa, and can also translate sentences.  
- 
-Thanks to Marcus Spiske on Unsplash for the background image.
+Unit tests are written in Jest to ensure accuracy and reliability.
 
 Responsive on PC or mobile.
 
+![alt text](./assets/images/readme_head.png)
+
+## Features
+
+- Translate English to Morse
+- Translate Morse to English
+- Fully tested with Jest
+- Responsive design for desktop and mobile
+- Clean, modern UI with auto-detect translation mode
+
 ## Instructions
 
-Type in a string in the search box to translate. 
+Type your text or Morse code into the input box.
 
-Please separate english words with a whitespace " ". 
+The translator will automatically detect the input type (English or Morse).
 
-Conversely, please separate morse code words with a forward slash "/" and letters with a whitespace " ". 
+Click **Translate** to convert it, or use **Clear** and **Copy Result** as needed.
+
+### Formatting Rules
+
+English → Morse: Separate words with a whitespace " ".
+
+Morse → English: Separate letters with a whitespace " " and words with a forward slash "/".
 
 ### Languages/Frameworks Used
 
-* HTML 5
-* CSS 3/SCSS
-* Javascript ES6
-* Jest 
+- HTML 5
+- CSS 3/SCSS
+- Javascript (ES6)
+- Jest (unit testing)
+
+## Development
+
+### Install dependencies
+
+npm install
+
+### Run tests
+
+npm test
