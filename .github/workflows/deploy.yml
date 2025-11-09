@@ -1,0 +1,57 @@
+name: Deploy Morse Code Translator to GitHub Pages
+
+on:
+  push:
+    branches: ["main"] # or "master" if that's your default
+  workflow_dispatch: # allows manual trigger from Actions tab
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test
+
+      # If you had a build step (e.g. bundling, compiling), it would go here:
+      # - name: Build project
+      #   run: npm run build
+
+      - name: Upload static files for GitHub Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # What to deploy. Here we deploy the repo root.
+          # If later you build into "dist", change this to "dist".
+          path: .
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

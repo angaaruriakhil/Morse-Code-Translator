@@ -1,114 +1,257 @@
-* {
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
   margin: 0;
-  padding: 0; 
+  padding: 0;
 }
 
 body {
-  width: 100vw; 
-  height: 100vh;
-  display: flex; 
-  justify-content: space-around; 
-  align-items: center; 
-  background: url("./assets/images/background.jpg"); 
-  background-repeat: no-repeat; 
-  background-size: cover; 
-  flex-wrap: wrap; 
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+
+  background: linear-gradient(to bottom, #d4e4ff 0%, #f3f6ff 100%);
+
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  color: #1e293b;
 }
 
+.translatorApp {
+  width: 100%;
+  max-width: 640px;
+}
 
-.englishToMorseTranslator {
-  display: flex; 
-  align-items: center; 
-  justify-content: space-around; 
-  flex-direction: column; 
-  height: 30vh; 
-  text-align: center; 
-  border: 2px solid white; 
-  border-radius: 15px; 
-  padding: 10px;  
-  background-color: black;
-  color: white;
-  font-family: Georgia, 'Times New Roman', Times, serif;
-  &__input {
-    width: 80%; 
-    height: 30px; 
-  }
-  &__translateWordButton {
-    font-family: Verdana, Geneva, Tahoma, sans-serif; 
-    font-size: 25px;  
-    border: 5px solid transparent; 
-    border-radius: 20px;
+.translatorCard {
+  background: #fcfcfd;
+  border-radius: 18px;
+  padding: 1.75rem 1.5rem 1.75rem;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+
+  &__title {
+    font-size: 1.75rem;
+    font-weight: 700;
     text-align: center;
-    font-weight: bold;
-    background: linear-gradient(#0BCE83, #0BCE83) padding-box, linear-gradient(#1178c3, #afb2b5) border-box;   
-    padding: 10px;
-    color: black; 
+    margin-bottom: 0.4rem;
+    color: #0f172a;
   }
-}
 
-.morseToEnglishTranslator {
-  display: flex; 
-  align-items: center; 
-  justify-content: space-around; 
-  flex-direction: column; 
-  height: 30vh; 
-  text-align: center; 
-  border: 2px solid white; 
-  border-radius: 15px; 
-  padding: 10px; 
-  background-color: black;
-  color: white;
-  font-family: Georgia, 'Times New Roman', Times, serif;
-  &__input {
-    width: 80%; 
-    height: 30px; 
-  }
-  &__translateWordButton {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 25px;  
-    border: 5px solid transparent; 
-    border-radius: 20px;
+  &__subtitle {
+    font-size: 0.9rem;
     text-align: center;
-    font-weight: bold;
-    background: linear-gradient(#0BCE83, #0BCE83) padding-box, linear-gradient(#1178c3, #afb2b5) border-box;   
-    padding: 10px;
-    color: black; 
+    color: #475569;
+    line-height: 1.5;
+    margin-bottom: 1.3rem;
+
+    strong {
+      color: #0f172a;
+      font-weight: 600;
+    }
+
+    code {
+      background: #e2e8f0;
+      border-radius: 4px;
+      padding: 0 4px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        "Liberation Mono", "Courier New", monospace;
+      font-size: 0.85em;
+    }
+  }
+
+  &__label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #475569;
+    display: block;
+    margin-bottom: 0.35rem;
+  }
+
+  &__input {
+    width: 100%;
+    border-radius: 12px;
+    border: 1px solid #cbd5e1;
+    padding: 0.75rem 0.9rem;
+    font-size: 0.96rem;
+    resize: vertical;
+    min-height: 3.3rem;
+    max-height: 10rem;
+    outline: none;
+    background: #ffffff;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease,
+      background-color 0.15s ease;
+
+    &:focus {
+      border-color: #0ea5e9;
+      box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.2);
+      background-color: #f9fdff;
+    }
+
+    &::placeholder {
+      color: #94a3b8;
+    }
+  }
+
+  &__mode {
+    margin-top: 0.6rem;
+    display: inline-flex;
+    align-items: center;
+    border-radius: 999px;
+    padding: 0.35rem 0.7rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+
+    &::before {
+      content: "";
+      display: inline-block;
+      width: 0.55rem;
+      height: 0.55rem;
+      border-radius: 999px;
+      margin-right: 0.45rem;
+    }
+
+    &--english {
+      background: #e0f4ff;
+      color: #0369a1;
+
+      &::before {
+        background: #0ea5e9;
+      }
+    }
+
+    &--morse {
+      background: #dcfce7;
+      color: #166534;
+
+      &::before {
+        background: #22c55e;
+      }
+    }
+
+    &--unknown {
+      background: #fef9c3;
+      color: #854d0e;
+
+      &::before {
+        background: #eab308;
+      }
+    }
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 1.2rem;
+  }
+
+  &__button {
+    border-radius: 999px;
+    padding: 0.55rem 1.3rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: transform 0.12s ease, box-shadow 0.12s ease,
+      background-color 0.12s ease, border-color 0.12s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    &--primary {
+      background: #0bce83;
+      color: #ffffff;
+      box-shadow: 0 10px 20px rgba(16, 185, 129, 0.32);
+      border-color: #0bce83;
+
+      &:hover:not(:disabled) {
+        background: #10d898;
+      }
+    }
+
+    &--secondary {
+      background: #ffffff;
+      color: #0f172a;
+      border-color: #cbd5e1;
+    }
+
+    &:hover:not(:disabled) {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 24px rgba(15, 23, 42, 0.12);
+    }
+
+    &:active:not(:disabled) {
+      transform: translateY(0);
+      box-shadow: none;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: default;
+      box-shadow: none;
+    }
+  }
+
+  &__resultWrapper {
+    margin-top: 1.2rem;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    background: #f8fafc;
+    padding: 0.7rem 0.8rem 0.85rem;
+  }
+
+  &__resultLabel {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #64748b;
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  &__result {
+    font-family: "SF Mono", ui-monospace, Menlo, Monaco, Consolas,
+      "Liberation Mono", "Courier New", monospace;
+    font-size: 0.95rem;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    color: #0f172a;
+  }
+
+  &__message {
+    min-height: 1.1rem;
+    margin-top: 0.6rem;
+    font-size: 0.85rem;
+
+    &--error {
+      color: #b91c1c;
+    }
+
+    &--success {
+      color: #15803d;
+    }
   }
 }
 
-@media screen and (max-width: 700px) {
-  .morseToEnglishTranslator {
-    height: 45vh; 
-    width: 80vw;
-    &__input {
-      width: 80%; 
-      height: 30px; 
+@media (max-width: 600px) {
+  .translatorCard {
+    padding: 1.4rem 1.1rem 1.5rem;
+
+    &__title {
+      font-size: 1.5rem;
     }
-    &__translateWordButton {
-      font-size: 15px;  
-      border: 3px solid transparent; 
+
+    &__actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    &__button {
+      width: 100%;
+      text-align: center;
     }
   }
-
-  .englishToMorseTranslator {
-    height: 45vh; 
-    width: 80vw; 
-    border: 2px solid white; 
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    &__input {
-      width: 80%; 
-      height: 30px; 
-    }
-    &__translateWordButton {
-      font-size: 15px;  
-      border: 5px solid transparent; 
-      background: linear-gradient(#0BCE83, #0BCE83) padding-box, linear-gradient(#1178c3, #afb2b5) border-box;   
-      padding: 10px;
-      color: black; 
-    }
-  }
-}
-
-button:hover {
-  transform: scale(1.1,1.1); 
 }

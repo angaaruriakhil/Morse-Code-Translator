@@ -1,28 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel = "stylesheet" href="styles.css"> 
-  <title>Morse Code Translator</title>
-</head>
-<body>
-  <div class = "englishToMorseTranslator"> 
-    <h1 class="englishToMorseTranslator__header"> English to Morse Code Translator </h1>
-    <label for="englishToMorseTranslator__input" class="englishToMorseTranslator__input-label"> Please input a word, sentence or number to translate to morse code.<br> Please separate words with a whitespace " ". </label>
-    <input type="text" name="englishToMorseTranslator__input" class = "englishToMorseTranslator__input" id = "englishToMorseTranslator__input">
-    <button type="submit" class="englishToMorseTranslator__translateWordButton"> Translate to Morse Code </button>
-    <h2 class = "englishToMorseTranslator__translatedWord"> </h2>
-  </div>
-  <div class = "morseToEnglishTranslator"> 
-    <h1 class="morseToEnglishTranslator__header"> Morse Code to English Translator </h1>
-    <label for="morseToEnglishTranslator__input" class="morseToEnglishTranslator__input-label"> Please input a word, sentence or number in morse code to translate to english.<br> Please separate letters with a whitespace " " and words with a forward slash "/".  </label>
-    <input type="text" name="morseToEnglishTranslator__input" class = "morseToEnglishTranslator__input" id = "morseToEnglishTranslator__input">
-    <button type="submit" class="morseToEnglishTranslator__translateWordButton"> Translate to English </button>
-    <h2 class = "morseToEnglishTranslator__translatedWord"> </h2>
-  </div>   
-  <script src="app.js" type="module"></script>
-  <script src="translator.js" type="module"></script> 
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Morse Code Translator</title>
+  </head>
+  <body>
+    <div class="translatorApp">
+      <div class="translatorCard">
+        <h1 class="translatorCard__title">Morse Code Translator</h1>
+        <p class="translatorCard__subtitle">
+          <strong>English → Morse:</strong> Please separate words with a
+          whitespace "<code> </code>".<br />
+          <strong>Morse → English:</strong> Please separate letters with a
+          whitespace "<code> </code>" and words with "<code>/</code>".
+        </p>
+
+        <label for="translatorInput" class="translatorCard__label">
+          Input
+        </label>
+        <textarea
+          id="translatorInput"
+          class="translatorCard__input"
+          rows="3"
+          placeholder="Type English, or Morse using . - / and spaces..."
+        ></textarea>
+
+        <p
+          id="translatorMode"
+          class="translatorCard__mode translatorCard__mode--unknown"
+        >
+          Detected Source Language: &ndash;
+        </p>
+
+        <div class="translatorCard__actions">
+          <button
+            id="translateButton"
+            class="translatorCard__button translatorCard__button--primary"
+            type="button"
+            disabled
+          >
+            Translate
+          </button>
+          <button
+            id="clearButton"
+            class="translatorCard__button translatorCard__button--secondary"
+            type="button"
+          >
+            Clear
+          </button>
+          <button
+            id="copyButton"
+            class="translatorCard__button translatorCard__button--secondary"
+            type="button"
+          >
+            Copy Result
+          </button>
+        </div>
+
+        <div class="translatorCard__resultWrapper">
+          <span class="translatorCard__resultLabel">Result</span>
+          <pre id="translatorOutput" class="translatorCard__result"></pre>
+        </div>
+
+        <p id="translatorMessage" class="translatorCard__message"></p>
+      </div>
+    </div>
+
+    <script src="app.js" type="module"></script>
+  </body>
 </html>
